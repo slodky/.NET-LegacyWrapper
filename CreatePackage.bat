@@ -1,1 +1,1 @@
-nuget.exe pack LegacyWrapperClient\LegacyWrapperClient.csproj -prop Configuration=Release -build
+dotnet pack LegacyWrapper.Client\LegacyWrapper.Client.csproj --configuration Release 

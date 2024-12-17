@@ -2,10 +2,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LegacyWrapper.Executor.x86", "LegacyWrapper.Executor.x86\LegacyWrapper.Executor.x86.csproj", "{B7665A68-F19C-4539-9FE1-06B14BA774E3}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LegacyWrapper.Executor.x64", "LegacyWrapper.Executor.x64\LegacyWrapper.Executor.x64.csproj", "{91DF95E2-014E-406B-8EBA-98C6B50F9840}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LegacyWrapper.Client", "LegacyWrapper.Client\LegacyWrapper.Client.csproj", "{CBBA289F-8E61-4FEA-8191-2794402C1333}"
 	ProjectSection(ProjectDependencies) = postProject
 		{B7665A68-F19C-4539-9FE1-06B14BA774E3} = {B7665A68-F19C-4539-9FE1-06B14BA774E3}
@@ -28,13 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LegacyWrapperTestDll", "LegacyWrapperTestDll\LegacyWrapperTestDll.vcxproj", "{E53A4D07-C345-4C92-B1B6-F0E72BA7262E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LegacyWrapper.Executor.Core", "LegacyWrapper.Executor.Core\LegacyWrapper.Executor.Core.csproj", "{17758936-6BBB-4BB3-BF4B-F75C5033A179}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LegacyWrapper.Client.IntegrationTests", "LegacyWrapper.Client.IntegrationTests\LegacyWrapper.Client.IntegrationTests.csproj", "{D8A020B8-47C8-40A7-93C5-A9CCAF296A0C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegacyWrapper.Executor.ARM64", "LegacyWrapper.Executor.ARM64\LegacyWrapper.Executor.ARM64.csproj", "{F511559D-4ED3-4B3F-9CFF-7AA7ED2B91F9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegacyWrapper.Executor.ARM32", "LegacyWrapper.Executor.ARM32\LegacyWrapper.Executor.ARM32.csproj", "{EF24C232-0E80-47D3-A976-2378F04EFDE2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LegacyWrapper.Client.Tests", "LegacyWrapper.Client.Tests\LegacyWrapper.Client.Tests.csproj", "{B016686F-E4E3-49C8-8A17-C180A473A89F}"
 EndProject
@@ -110,18 +100,6 @@ Global
 		{E53A4D07-C345-4C92-B1B6-F0E72BA7262E}.Release|x64.Build.0 = Release|x64
 		{E53A4D07-C345-4C92-B1B6-F0E72BA7262E}.Release|x86.ActiveCfg = Release|Win32
 		{E53A4D07-C345-4C92-B1B6-F0E72BA7262E}.Release|x86.Build.0 = Release|Win32
-		{17758936-6BBB-4BB3-BF4B-F75C5033A179}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{17758936-6BBB-4BB3-BF4B-F75C5033A179}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{17758936-6BBB-4BB3-BF4B-F75C5033A179}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{17758936-6BBB-4BB3-BF4B-F75C5033A179}.Debug|x64.Build.0 = Debug|Any CPU
-		{17758936-6BBB-4BB3-BF4B-F75C5033A179}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{17758936-6BBB-4BB3-BF4B-F75C5033A179}.Debug|x86.Build.0 = Debug|Any CPU
-		{17758936-6BBB-4BB3-BF4B-F75C5033A179}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{17758936-6BBB-4BB3-BF4B-F75C5033A179}.Release|Any CPU.Build.0 = Release|Any CPU
-		{17758936-6BBB-4BB3-BF4B-F75C5033A179}.Release|x64.ActiveCfg = Release|Any CPU
-		{17758936-6BBB-4BB3-BF4B-F75C5033A179}.Release|x64.Build.0 = Release|Any CPU
-		{17758936-6BBB-4BB3-BF4B-F75C5033A179}.Release|x86.ActiveCfg = Release|Any CPU
-		{17758936-6BBB-4BB3-BF4B-F75C5033A179}.Release|x86.Build.0 = Release|Any CPU
 		{D8A020B8-47C8-40A7-93C5-A9CCAF296A0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D8A020B8-47C8-40A7-93C5-A9CCAF296A0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8A020B8-47C8-40A7-93C5-A9CCAF296A0C}.Debug|x64.ActiveCfg = Debug|Any CPU

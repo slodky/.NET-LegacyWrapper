@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PommaLabs.Thrower;
+//using PommaLabs.Thrower;
 
 namespace LegacyWrapper.Common.Token
 {
@@ -13,7 +13,7 @@ namespace LegacyWrapper.Common.Token
 
         public PipeToken(string token)
         {
-            Raise.ArgumentException.IfIsNullOrWhiteSpace(token, nameof(token));
+            //Raise.ArgumentException.IfIsNullOrWhiteSpace(token, nameof(token));
 
             Token = token;
         }

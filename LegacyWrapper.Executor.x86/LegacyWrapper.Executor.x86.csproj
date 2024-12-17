@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <PlatformTarget>x86</PlatformTarget>
+    <PackageId>LegacyWrapper.Executor.x86</PackageId>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <TrimMode>copyused</TrimMode>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <TrimmableAssembly Include="Newtonsoft.Json" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\LegacyWrapper.Executor.Core\LegacyWrapper.Executor.Core.csproj" />
+  </ItemGroup>
+
+</Project>

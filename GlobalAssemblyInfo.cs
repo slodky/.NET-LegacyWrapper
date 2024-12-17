@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // Allgemeine Informationen über eine Assembly werden über die folgenden 
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
-[assembly: AssemblyDescription("LegacyWrapper uses a wrapper process to call dlls from a process of the opposing architecture (X86 or AMD64).")]
+/*[assembly: AssemblyDescription("LegacyWrapper uses a wrapper process to call dlls from a process of the opposing architecture (X86 or AMD64).")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("codefoundry.de")]
 [assembly: AssemblyCopyright("Copyright (c) 2019, Franz Wimmer. (MIT License)")]
@@ -21,5 +21,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("3.0.1.0")]
 
 [assembly: InternalsVisibleTo("LegacyWrapperTest")]
-[assembly: InternalsVisibleTo("LegacyWrapperTest.Integration")]
-[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")] // For moq
+[assembly: InternalsVisibleTo("LegacyWrapper.Client.IntegrationTests")]
+[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")] // For moq*/

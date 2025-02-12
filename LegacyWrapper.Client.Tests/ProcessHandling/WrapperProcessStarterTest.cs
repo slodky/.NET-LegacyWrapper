@@ -38,7 +38,7 @@ namespace LegacyWrapper.Client.Tests.ProcessHandling
         [TestMethod]
         public void TestStartsProcess()
         {
-            WrapperProcessStarter processStarter = new WrapperProcessStarter(_nameProviderMock.Object, MockToken, _processFactoryMock.Object);
+            var processStarter = new WrapperProcessStarter(_nameProviderMock.Object, MockToken, _processFactoryMock.Object);
 
             processStarter.StartWrapperProcess();
 

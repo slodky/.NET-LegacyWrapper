@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Text.Json;
+using LegacyWrapper.Common.Models;
 using LegacyWrapper.Common.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace LegacyWrapper.Common.Serialization;
+namespace LegacyWrapper.Common.Serialization.SystemText;
 
 public class CustomJsonConverterForIntPtr : JsonConverter<IntPtr>
 {

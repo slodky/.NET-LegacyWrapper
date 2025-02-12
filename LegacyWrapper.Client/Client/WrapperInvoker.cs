@@ -1,5 +1,6 @@
 ﻿using System;
 using LegacyWrapper.Client.Transport;
+using LegacyWrapper.Common.Models;
 using LegacyWrapper.Common.Serialization;
 using PommaLabs.Thrower;
 
@@ -24,7 +25,7 @@ namespace LegacyWrapper.Client.Client
         /// <param name="callData"><see cref="CallData">CallData</see> object with information about invocation.</param>
         /// <returns>Result object returned by the library.</returns>
         /// <exception cref="Exception">This Method will rethrow all exceptions thrown by the wrapper.</exception>
-        protected internal object InvokeInternal(CallData callData)
+        protected internal virtual object InvokeInternal(CallData callData)
         {
             var callResult = _wrapperClient.SendCallRequest(callData);
 

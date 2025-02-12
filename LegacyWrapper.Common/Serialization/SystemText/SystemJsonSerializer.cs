@@ -16,8 +16,10 @@ public class SystemJsonSerializer : IWrapperSerializer
             WriteIndented = true,
             ReferenceHandler = ReferenceHandler.Preserve
         };
+        _options.Converters.Add(new CustomJsonConverterForBytes());
         _options.Converters.Add(new CustomJsonConverterForType());
         _options.Converters.Add(new CustomJsonConverterForIntPtr());
+        _options.Converters.Add(new CustomJsonConverterForCallData());
     }
     
     public string Serialize<T>(T obj)

@@ -15,7 +15,7 @@
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LegacyWrapper.Common\LegacyWrapper.Common.Net8.csproj" />
+    <ProjectReference Include="..\LegacyWrapper.Common\LegacyWrapper.Common.csproj" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

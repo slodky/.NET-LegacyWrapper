@@ -1,11 +1,11 @@
 ﻿using System.Reflection;
 using Castle.DynamicProxy;
 using LegacyWrapper.Client.Attributes;
-using LegacyWrapper.Client.Client;
 using LegacyWrapper.Client.Configuration;
 using LegacyWrapper.Client.DynamicProxy;
 using LegacyWrapper.Client.Transport;
 using LegacyWrapper.Common.ErrorHandling;
+using LegacyWrapper.Common.Models;
 using LegacyWrapper.Common.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -135,14 +135,14 @@ namespace LegacyWrapper.Client.Tests.DynamicProxy
         [TestMethod, ExpectedException(typeof(ObjectDisposedException))]
         public void TestInterceptorCallsDispose()
         {
-            Mock<MethodInfo> methodInfoMock = new Mock<MethodInfo>();
+            var methodInfoMock = new Mock<MethodInfo>();
             methodInfoMock
                 .SetupGet(mock => mock.Name)
                 .Returns(nameof(WrapperInvoker.Dispose));
             _invocationMock
                 .SetupGet(mock => mock.Method)
                 .Returns(methodInfoMock.Object);
-            WrapperClientInterceptor interceptor = new WrapperClientInterceptor(MockInterfaceType, _wrapperClientMock.Object, _libraryNameProviderMock.Object);
+            var interceptor = new WrapperClientInterceptor(MockInterfaceType, _wrapperClientMock.Object, _libraryNameProviderMock.Object);
 
 
             interceptor.Intercept(_invocationMock.Object);

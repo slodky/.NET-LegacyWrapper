@@ -1,33 +1,127 @@
 ﻿using System;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using LegacyWrapper.Common.Models;
 
-namespace LegacyWrapper.Common.Serialization;
+namespace LegacyWrapper.Common.Serialization.SystemText;
 
-/*public class CustomJsonConverterForCallData : JsonConverter<CallData>
+public class CustomJsonConverterForCallData : JsonConverter<CallData>
 {
     public override CallData Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
-        // Caution: Deserialization of type instances like this is not recommended and should be avoided
-        // since it can lead to potential security issues.
+        var callData = new CallData();
 
-        var assemblyQualifiedName = reader.GetString();
-        return Type.GetType(assemblyQualifiedName);
+        while (reader.Read())
+        {
+            if (reader.TokenType == JsonTokenType.EndObject)
+                return callData;
+
+            if (reader.TokenType == JsonTokenType.PropertyName)
+            {
+                string propertyName = reader.GetString();
+                reader.Read();
+
+                switch (propertyName)
+                {
+                    case "LibraryName":
+                        callData.LibraryName = reader.GetString();
+                        break;
+
+                    case "ProcedureName":
+                        callData.ProcedureName = reader.GetString();
+                        break;
+                    
+                    case "ParameterTypes":
+                        callData.ParameterTypes = JsonSerializer.Deserialize<Type[]>(ref reader, options);
+                        break;
+
+                    case "Parameters":
+                        var objectParams = JsonSerializer.Deserialize<object[]>(ref reader, options);
+                        callData.Parameters = new object[objectParams.Length];
+                        for (int index = 0; index < objectParams.Length; index++)
+                        {
+                            var paramObject = objectParams[index];
+                            var paramType = callData.ParameterTypes?[index];
+                            if (paramType == typeof(byte[]))
+                            {
+                                callData.Parameters[index] = Convert.FromBase64String(paramObject.ToString());
+                            }
+                            else
+                            {
+                                var paramTypeToSerialize = paramType;
+                                if (paramType.IsByRef)
+                                {
+                                    paramTypeToSerialize = paramType.GetElementType();
+                                }
+                                callData.Parameters[index] = JsonSerializer.Deserialize(paramObject.ToString(), paramTypeToSerialize, options);
+                            }
+                        }
+                        break;
+
+
+
+                    case "ReturnType":
+                        string returnTypeString = reader.GetString();
+                        callData.ReturnType = Type.GetType(returnTypeString);
+                        break;
+
+                    case "CallingConvention":
+                        if (Enum.TryParse(reader.GetString(), out CallingConvention callingConvention))
+                            callData.CallingConvention = callingConvention;
+                        break;
+
+                    case "CharSet":
+                        if (Enum.TryParse(reader.GetString(), out CharSet charSet))
+                            callData.CharSet = charSet;
+                        break;
+
+                    case "Status":
+                        if (Enum.TryParse(reader.GetString(), out KeepAliveStatus status))
+                            callData.Status = status;
+                        break;
+
+                    default:
+                        // Skip unknown properties
+                        reader.Skip();
+                        break;
+                }
+            }
+        }
+
+        throw new JsonException("Invalid JSON format for CallData");
     }
 
     public override void Write(Utf8JsonWriter writer, CallData value, JsonSerializerOptions options)
     {
-        var jsonObject = new JObject
+        writer.WriteStartObject();
+
+        writer.WriteString("LibraryName", value.LibraryName);
+        writer.WriteString("ProcedureName", value.ProcedureName);
+        
+        if (value.ParameterTypes != null)
         {
-            { "LibraryName", value.LibraryName },
-            { "ProcedureName", value.ProcedureName },
-            { "Parameters", JArray.FromObject(value.Parameters) },
-            { "ParameterTypes", JArray.FromObject(value.ParameterTypes) },
-            { "ReturnType", value.ReturnType?.FullName },
-            { "CallingConvention", value.CallingConvention.ToString() },
-            { "CharSet", value.CharSet.ToString() },
-            { "Status", value.Status.ToString() }
-        };
-        jsonObject.WriteTo(writer);
+            writer.WritePropertyName("ParameterTypes");
+            JsonSerializer.Serialize(writer, value.ParameterTypes, options);
+        }
+
+        if (value.Parameters != null)
+        {
+            writer.WritePropertyName("Parameters");
+            JsonSerializer.Serialize(writer, value.Parameters, options);
+        }
+
+        if (value.ReturnType != null)
+        {
+            writer.WritePropertyName("ReturnType");
+            writer.WriteStringValue(value.ReturnType.AssemblyQualifiedName);
+        }
+
+        writer.WriteString("CallingConvention", value.CallingConvention.ToString());
+        writer.WriteString("CharSet", value.CharSet.ToString());
+        writer.WriteString("Status", value.Status.ToString());
+
+        writer.WriteEndObject();
     }
-}*/
+}

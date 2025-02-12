@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Text.Json;
+using LegacyWrapper.Common.Serialization;
 using LegacyWrapper.Common.Serialization.SystemText;
 
-namespace LegacyWrapper.Common.Serialization
+namespace LegacyWrapper.Common.Models
 {
     /// <summary>
     /// Class to transmit info to the server. The server will execute an appropriate call and eventually return the results.
@@ -12,6 +11,8 @@ namespace LegacyWrapper.Common.Serialization
     [Serializable]
     public class CallData
     {
+        private readonly IWrapperSerializer _serializer = new SystemJsonSerializer();
+
         public CallData()
         {
             Status = KeepAliveStatus.KeepAlive;
@@ -28,6 +29,19 @@ namespace LegacyWrapper.Common.Serialization
         /// Array of parameters to pass to the function call.
         /// </summary>
         public object[] Parameters { get; set; }
+
+        public object[] GetProperParameters()
+        {
+            var result = new object[Parameters.Length];
+            for (var index = 0; index < Parameters.Length; index++)
+            {
+                var properType = ParameterTypes[index];
+                result[index] = _serializer.Deserialize(Parameters[index].ToString(), properType);
+
+            }
+
+            return result;
+        }
         
         public Type[] ParameterTypes { get; set; }
 
@@ -44,31 +58,6 @@ namespace LegacyWrapper.Common.Serialization
         /// Status indicating if the wrapper executable should close the connection and terminate itself
         /// </summary>
         public KeepAliveStatus Status { get; set; }
-        
-        /*public object ChangeType(object value, Type type)
-        {
-            if (value == null && type.IsGenericType) return Activator.CreateInstance(type);
-            if (value == null) return null;
-            if (type == value.GetType()) return value;
-            if (type.IsEnum)
-            {
-                if (value is string)
-                    return Enum.Parse(type, value as string);
-                else
-                    return Enum.ToObject(type, value);
-            }
-            if (!type.IsInterface && type.IsGenericType)
-            {
-                Type innerType = type.GetGenericArguments()[0];
-                object innerValue = ChangeType(value, innerType);
-                return Activator.CreateInstance(type, new object[] { innerValue });
-            }
-            if (value is string valueString && type == typeof(Byte[])) return Encoding.UTF8.GetBytes(valueString);
-            if (value is string && type == typeof(Guid)) return new Guid(value as string);
-            if (value is string && type == typeof(Version)) return new Version(value as string);
-            if (!(value is IConvertible)) return value;
-            return Convert.ChangeType(value, type);
-        }*/
     }
 
     public enum KeepAliveStatus
@@ -76,7 +65,4 @@ namespace LegacyWrapper.Common.Serialization
         KeepAlive,
         Close
     }
-    
-    
-
 }

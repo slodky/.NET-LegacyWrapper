@@ -3,7 +3,7 @@ using System.Text.Json;
 using LegacyWrapper.Common.Serialization;
 using LegacyWrapper.Common.Serialization.SystemText;
 
-namespace LegacyWrapper.Common.Standard.Models;
+namespace LegacyWrapper.Common.Models;
 
 public class ModelHelper
 {
@@ -11,7 +11,7 @@ public class ModelHelper
     
     public object[] EnsureSerializationTypes(object[] parameters, Type[] parameterTypes)
     {
-        if (parameters != null && parameters.Length > 0)
+        if (parameters.Length > 0)
         {
             var invokeParams = new object[parameters.Length];
             for (var i = 0; i < parameters.Length; i++)
@@ -23,6 +23,7 @@ public class ModelHelper
 
             return invokeParams;
         }
+
         return parameters;
     }
     

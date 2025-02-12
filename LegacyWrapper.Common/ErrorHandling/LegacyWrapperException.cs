@@ -32,15 +32,5 @@ namespace LegacyWrapper.Common.ErrorHandling
             : base(message, innerException)
         {
         }
-
-        /// <summary>
-        /// Creates a new instance of <see cref="LegacyWrapperException"/> with the specified serialization info and streaming context.
-        /// </summary>
-        /// <param name="info">Serialization info.</param>
-        /// <param name="context">Streaming context.</param>
-        protected LegacyWrapperException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-        }
     }
 }

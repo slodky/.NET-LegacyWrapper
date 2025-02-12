@@ -17,7 +17,7 @@ namespace LegacyWrapper.Client.Tests.Configuration
 
             var actualLibraryName = provider.GetLibraryName(TestLegacyDllImportAttribute);
 
-            //Assert.AreEqual(TestLibraryName, actualLibraryName);
+            Assert.AreEqual(TestLibraryName, actualLibraryName);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]

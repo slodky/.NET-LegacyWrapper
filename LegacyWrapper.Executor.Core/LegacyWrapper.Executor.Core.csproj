@@ -4,6 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <LangVersion>default</LangVersion>
     <Nullable>enable</Nullable>
+	<PublishTrimmed>true</PublishTrimmed>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <RunCodeAnalysis>false</RunCodeAnalysis>
@@ -12,7 +13,10 @@
     <PackageReference Include="NetMQ" Version="4.0.1.13" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LegacyWrapper.Common\LegacyWrapper.Common.Net8.csproj" />
+	  <ProjectReference Include="..\LegacyWrapper.Common\LegacyWrapper.Common.csproj">
+		  <AdditionalProperties>TargetFramework=net8.0</AdditionalProperties>
+		  <ExcludeAssets>netstandard2.0</ExcludeAssets>
+	  </ProjectReference>
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Reflection.Emit;
 using LegacyWrapper.Common.ErrorHandling;
+using LegacyWrapper.Common.Models;
 using LegacyWrapper.Common.Serialization;
 
 //using PommaLabs.Thrower;
@@ -25,15 +27,29 @@ namespace LegacyWrapper.Executor.Core.Interop
                     $"Requested method {callData.ProcedureName} was not found in unmanaged DLL.");
             }
 
-            var result = methodInfo.Invoke(null, callData.Parameters);
-
-            return new CallResult()
+            try
             {
-                Result = result,
-                Parameters = callData.Parameters
-            };
+                var result = methodInfo.Invoke(null, callData.Parameters);
+                return new CallResult()
+                {
+                    Result = result,
+                    Parameters = callData.Parameters
+                };
+
+            } catch (DllNotFoundException)
+            {
+                Console.WriteLine("DLL not found");
+                // send back info
+
+                return new CallResult()
+                {
+                    ExceptionMsg = "DLL not found",
+                    Parameters = callData.Parameters
+                };
+            }
         }
 
+        [RequiresUnreferencedCode("Calls System.Reflection.Emit.TypeBuilder.DefinePInvokeMethod(String, String, MethodAttributes, CallingConventions, Type, Type[], CallingConvention, CharSet)")]
         private static Type CreateTypeBuilder(CallData callData)
         {
             AssemblyName asmName = new AssemblyName(AssemblyName);

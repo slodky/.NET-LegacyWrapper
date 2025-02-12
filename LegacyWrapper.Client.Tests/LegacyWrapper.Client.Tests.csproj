@@ -16,7 +16,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\LegacyWrapper.Client\LegacyWrapper.Client.csproj" />
-      <ProjectReference Include="..\LegacyWrapper.Common\LegacyWrapper.Common.Standard.csproj" />
+      <ProjectReference Include="..\LegacyWrapper.Common\LegacyWrapper.Common.csproj" />
     </ItemGroup>
 
 </Project>

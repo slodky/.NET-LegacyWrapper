@@ -1,4 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.IO.Pipes;
+using System.Runtime.Serialization;
+using LegacyWrapper.Client.ProcessHandling;
+using LegacyWrapper.Common.Models;
+using LegacyWrapper.Common.Token;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace LegacyWrapper.Client.Tests.Transport
 {

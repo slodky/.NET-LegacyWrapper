@@ -1,4 +1,5 @@
 ﻿using System;
+using LegacyWrapper.Common.Models;
 using LegacyWrapper.Common.Serialization;
 
 namespace LegacyWrapper.Client.Transport

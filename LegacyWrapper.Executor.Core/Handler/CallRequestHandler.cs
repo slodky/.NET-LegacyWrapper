@@ -1,4 +1,5 @@
 ﻿using System;
+using LegacyWrapper.Common.Models;
 using LegacyWrapper.Common.Serialization;
 using LegacyWrapper.Executor.Core.Interop;
 

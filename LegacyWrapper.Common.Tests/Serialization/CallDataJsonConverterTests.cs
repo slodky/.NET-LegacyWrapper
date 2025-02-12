@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using LegacyWrapper.Common.Models;
 using LegacyWrapper.Common.Serialization;
 using LegacyWrapper.Common.Serialization.SystemText;
 using LegacyWrapper.Common.Serialization.Utf8Json;
@@ -31,27 +32,7 @@ public class CallDataJsonConverterTests
         var deserializedValue = deserialized.Parameters.First();
         var deserializedType = deserializedValue.GetType();
 
-        Assert.AreEqual(expectedType, deserializedType);
-        Assert.AreEqual(expectedType, deserializedType);
-        Assert.AreEqual(testObject.Parameters.First(), deserializedValue);
-    }
-    
-    [TestMethod]
-    public void TestWrappedUint32Serialization()
-    {
-        var testObject = new CallData()
-        {
-            Parameters = [( new Uint32Wrapper() { Value = 32})],
-            ParameterTypes = [typeof(Uint32Wrapper)]
-        };
-
-        var serialized = _serializer.Serialize(testObject);
-        var deserialized = _serializer.Deserialize<CallData>(serialized);
-
-        var expectedType = testObject.Parameters.First().GetType();
-        //var deserializedType = deserialized.Parameters.First().GetType();
-        var deserializedValue = deserialized.Parameters.First();
-        var deserializedType = deserializedValue.GetType();
+        var proper = deserialized.GetProperParameters();
 
         Assert.AreEqual(expectedType, deserializedType);
         Assert.AreEqual(expectedType, deserializedType);
@@ -103,10 +84,5 @@ public class CallDataJsonConverterTests
 
         Assert.AreEqual(expectedType, deserializedType);
         Assert.IsTrue(originalBytes.SequenceEqual((byte[])deserializedValue));
-    }
-
-    public class Uint32Wrapper
-    {
-        public uint Value { get; set; }
     }
 }

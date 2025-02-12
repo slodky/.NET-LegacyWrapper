@@ -1,8 +1,8 @@
 ﻿using LegacyWrapper.Client.ProcessHandling;
 using LegacyWrapper.Common.ErrorHandling;
+using LegacyWrapper.Common.Models;
 using LegacyWrapper.Common.Serialization;
 using LegacyWrapper.Common.Serialization.SystemText;
-using LegacyWrapper.Common.Standard.Models;
 using NetMQ;
 using NetMQ.Sockets;
 using PommaLabs.Thrower;

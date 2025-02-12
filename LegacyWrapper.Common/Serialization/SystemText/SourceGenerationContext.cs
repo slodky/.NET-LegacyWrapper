@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using LegacyWrapper.Common.Models;
 
 namespace LegacyWrapper.Common.Serialization;
 
@@ -16,6 +19,8 @@ namespace LegacyWrapper.Common.Serialization;
 [JsonSerializable(typeof(string))]
 [JsonSerializable(typeof(float))]
 [JsonSerializable(typeof(double))]
+[JsonSerializable(typeof(IEnumerable<string>))]
+[JsonSerializable(typeof(string[]))]
 public partial class SourceGenerationContext : JsonSerializerContext
 {
 }

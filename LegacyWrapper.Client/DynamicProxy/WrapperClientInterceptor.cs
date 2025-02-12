@@ -6,6 +6,7 @@ using LegacyWrapper.Client.Attributes;
 using LegacyWrapper.Client.Client;
 using LegacyWrapper.Client.Configuration;
 using LegacyWrapper.Common.ErrorHandling;
+using LegacyWrapper.Common.Models;
 using LegacyWrapper.Common.Serialization;
 using PommaLabs.Thrower;
 

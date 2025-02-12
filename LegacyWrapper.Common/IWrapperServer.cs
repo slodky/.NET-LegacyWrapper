@@ -1,4 +1,5 @@
-﻿using LegacyWrapper.Common.Serialization;
+﻿using LegacyWrapper.Common.Models;
+using LegacyWrapper.Common.Serialization;
 
 namespace LegacyWrapper.Common
 {
